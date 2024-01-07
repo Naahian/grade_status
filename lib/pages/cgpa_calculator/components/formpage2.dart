@@ -58,22 +58,24 @@ class _FormPage2State extends State<FormPage2> {
           if (_formKey.currentState!.validate()) {
             showDialog(
               context: context,
-              builder: (context) => AlertDialog(
-                // backgroundColor: Colors.green[800],
-                title: Text("CGPA ${calcController.cgpa}", textAlign: TextAlign.center),
-                content: const Text(
-                    "Well Done! Well Done!Well Done!Well Done!Well Done!Well Done!Well Done!",
-                    textAlign: TextAlign.center),
-                actions: [
-                  TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text("Got it"))
-                ],
-              ),
+              builder: (context) => resultDialog(context),
             );
           }
         },
         child: const Text("Calculate"));
+  }
+
+  AlertDialog resultDialog(BuildContext context) {
+    return AlertDialog(
+      title: Text("CGPA ${calcController.cgpa}", textAlign: TextAlign.center),
+      content: Text(calcController.messege, textAlign: TextAlign.center),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text("Got it"),
+        )
+      ],
+    );
   }
 
   OutlinedButton _buildBackButton() {
